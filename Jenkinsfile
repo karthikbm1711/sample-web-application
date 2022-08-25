@@ -1,13 +1,13 @@
 pipeline {
    agent any
       stages {
-          agent {
+          stage('sonar quality check') {
+            agent {
              docker {
                 image 'maven:latest'
 	        args '-v /root/.m2:/root/.m2'
 	     }
            }
-             stage('sonar quality check') {
 	     steps {
 	     script {
 	       withSonarQubeEnv('sonar-server') {
